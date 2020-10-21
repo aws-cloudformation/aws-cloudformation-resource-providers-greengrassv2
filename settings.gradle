@@ -1,0 +1,4 @@
+rootProject.name = 'AWSCloudFormationResourceProvidersGreengrassV2'
+
+include 'aws-greengrassv2-createcomponentversion'
+
