@@ -25,11 +25,6 @@ public class CreateHandler extends BaseHandlerStd {
 
         logger.log("CreateHandler, the model is:" + request.getDesiredResourceState().toString());
 
-//        return ProgressEvent.<ResourceModel, CallbackContext>builder()
-//                .status(OperationStatus.SUCCESS)
-//                .resourceModel(ResourceModel.builder().targetName(request.getDesiredResourceState().getTargetName()).build())
-//                .build();
-
         // TODO: Adjust Progress Chain according to your implementation
         // https://github.com/aws-cloudformation/cloudformation-cli-java-plugin/blob/master/src/main/java/software/amazon/cloudformation/proxy/CallChain.java
 

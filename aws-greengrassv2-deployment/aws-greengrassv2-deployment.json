@@ -305,7 +305,7 @@
     "/properties/DeploymentName"
   ],
   "additionalProperties": false,
-  "readOnlyProperties": [
+  "createOnlyProperties": [
     "/properties/TargetName",
     "/properties/TargetType",
     "/properties/DeploymentName"
