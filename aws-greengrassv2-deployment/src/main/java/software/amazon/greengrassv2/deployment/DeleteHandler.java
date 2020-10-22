@@ -51,4 +51,3 @@ public class DeleteHandler extends BaseHandlerStd {
                 .then(progress -> ProgressEvent.defaultSuccessHandler(null));
     }
 }
-

@@ -21,4 +21,3 @@ Resources:
       Handler: software.amazon.greengrassv2.deployment.HandlerWrapper::testEntrypoint
       Runtime: java8
       CodeUri: ./target/aws-greengrassv2-deployment-handler-1.0-SNAPSHOT.jar
-

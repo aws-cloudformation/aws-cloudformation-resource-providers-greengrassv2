@@ -74,4 +74,3 @@ The type of the target, should be either thing or thinggroup.
 #### DeploymentName
 
 The name of the deployment.
-
