@@ -155,6 +155,10 @@
                         <exclude>**/BaseHandler*</exclude>
                         <exclude>**/HandlerWrapper*</exclude>
                         <exclude>**/ResourceModel*</exclude>
+                        <exclude>**/*Translator*</exclude>
+                        <!--TODO: Remove the following handlers when they are implemented-->
+                        <exclude>**/ListHandler*</exclude>
+                        <exclude>**/UpdateHandler*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
