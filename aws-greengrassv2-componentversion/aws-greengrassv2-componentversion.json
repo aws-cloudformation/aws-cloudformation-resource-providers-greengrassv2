@@ -1,0 +1,41 @@
+{
+  "typeName": "AWS::GreengrassV2::ComponentVersion",
+  "description": "Resource for Greengrass component version.",
+  "sourceUrl": "https://finthomp.aka.corp.amazon.com/docs/evergreen-api/mainline/greengrass/v2/APIReference/API_CreateComponent.html",
+  "properties": {
+    "Recipe": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "readOnlyProperties": [
+    "/properties/Recipe"
+  ],
+  "primaryIdentifier": [
+    "/properties/Recipe"
+  ],
+  "handlers": {
+    "create": {
+      "permissions": [
+        "DynamoDB:CreateTable",
+        "DynamoDB:DescribeTable"
+      ]
+    },
+    "read": {
+      "permissions": [
+        "DynamoDB:DescribeTable"
+      ]
+    },
+    "update": {
+      "permissions": []
+    },
+    "delete": {
+      "permissions": [
+        "DynamoDB:DeleteTable"
+      ]
+    },
+    "list": {
+      "permissions": []
+    }
+  }
+}

@@ -22,8 +22,3 @@ rpdk.log
 
 # contains credentials
 sam-tests/
-
-# python tests
-.pytest_cache
-
-.hypothesis
