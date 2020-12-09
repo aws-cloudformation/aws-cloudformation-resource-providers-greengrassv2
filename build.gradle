@@ -7,7 +7,7 @@ allprojects {
 task release
 
 // Copy all resource providers to folder `packaging_additional_published_artifacts` for deployment
-def projectsToRelease = ["aws-greengrassv2-createcomponentversion"].collect { project(it) }
+def projectsToRelease = ["aws-greengrassv2-componentversion"].collect { project(it) }
 configure(projectsToRelease) {
     task release(dependsOn: build) {
         group "build"

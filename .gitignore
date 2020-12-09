@@ -26,3 +26,11 @@ sam-tests/
 .pytest_cache
 
 .hypothesis
+
+# Internal-only rules (these rules are for Amazon-internal build tools, etc).
+# Gradle
+/.gradle/
+/gradle/
+/wrapper/
+/gradlew
+/gradlew.bat
