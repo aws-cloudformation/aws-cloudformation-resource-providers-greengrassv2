@@ -17,10 +17,10 @@ This project is licensed under the Apache-2.0 License.
 
 ## Steps to build, run UTs and test in the personal account.
 
-1. Go to CFN resource directory(e.g. `aws-greengrassv2-deployment`).
-2. Make some changes to resource definition json file(e.g. `aws-greengrassv2-deployment.json`).
+1. Go to CFN resource directory(e.g. `aws-greengrassv2-componentversion`).
+2. Make some changes to resource definition json file(e.g. `aws-greengrassv2-componentversion.json`).
 3. Run `cfn validate` and `cfn generate` to generate the cfn resource files.
-4. Make some changes to handlers (e.g. `aws-greengrassv2-deployment/src/main/java/software/amazon/greengrassv2/deployment/CreateHandler`)
+4. Make some changes to handlers (e.g. `aws-greengrassv2-componentversion/src/main/java/software/amazon/greengrassv2/componentversion/CreateHandler`)
 5. Run `mvn clean install -U` to build the packages and run the tests.
 6. Run `mvn package` to generate the artifacts.
 7. Paste credentials of the personal account to the terminal.
