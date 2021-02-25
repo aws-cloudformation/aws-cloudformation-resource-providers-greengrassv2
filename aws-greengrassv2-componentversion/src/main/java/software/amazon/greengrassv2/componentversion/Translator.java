@@ -13,7 +13,6 @@ import software.amazon.awssdk.services.greengrassv2.model.DescribeComponentReque
 import software.amazon.awssdk.services.greengrassv2.model.DescribeComponentResponse;
 import software.amazon.awssdk.services.greengrassv2.model.ListComponentVersionsRequest;
 import software.amazon.awssdk.services.greengrassv2.model.ListComponentVersionsResponse;
-import software.amazon.awssdk.services.greengrassv2.model.RecipeSource;
 import software.amazon.awssdk.services.greengrassv2.model.TagResourceRequest;
 import software.amazon.awssdk.services.greengrassv2.model.UntagResourceRequest;
 import software.amazon.cloudformation.proxy.ResourceHandlerRequest;

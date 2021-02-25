@@ -30,7 +30,7 @@ Resources:
                 - "greengrass:TagResource"
                 - "greengrass:UntagResource"
                 - "lambda:GetFunction"
-                - "s3:*"
+                - "s3:GetObject"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:
