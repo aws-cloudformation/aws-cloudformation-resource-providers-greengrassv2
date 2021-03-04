@@ -247,7 +247,7 @@
     "Tags": {
       "type": "object",
       "patternProperties": {
-        "^(?!aws:)[a-zA-Z+-=._:/]+{1,128}$": {
+        "^(?!aws:)[a-zA-Z+-=._:/]{1,128}$": {
           "type": "string",
           "maxLength": 256
         }
@@ -285,7 +285,7 @@
         "greengrass:CreateComponentVersion",
         "greengrass:DescribeComponent",
         "lambda:GetFunction",
-        "s3:*"
+        "s3:GetObject"
       ]
     },
     "read": {
