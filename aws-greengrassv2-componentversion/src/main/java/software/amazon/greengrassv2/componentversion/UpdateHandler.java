@@ -32,6 +32,7 @@ public class UpdateHandler extends BaseHandlerStd {
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(this::validateArnPresent)
+                .then(progressEvent -> validateIfComponentResourceExists(request.getPreviousResourceState(), progressEvent))
                 .then(progressEvent -> validateCreateOnlyPropertiesNotChanged(
                         request.getDesiredResourceState(), request.getPreviousResourceState(), progressEvent))
                 .then(progress -> updateTags(proxy, proxyClient, request.getDesiredResourceState().getArn(),
@@ -59,6 +60,16 @@ public class UpdateHandler extends BaseHandlerStd {
                     HandlerErrorCode.NotUpdatable, "ComponentVersion property cannot be updated.");
         }
 
+        return progressEvent;
+    }
+
+    private ProgressEvent<ResourceModel, CallbackContext> validateIfComponentResourceExists(
+            ResourceModel previousResourceState,
+            ProgressEvent<ResourceModel, CallbackContext> progressEvent) {
+        if(previousResourceState.getArn() == null) {
+            return ProgressEvent.failed(previousResourceState, progressEvent.getCallbackContext(),
+                    HandlerErrorCode.NotFound, "Cannot update component resource which does not exist");
+        }
         return progressEvent;
     }
 
