@@ -1,0 +1,7 @@
+{
+  "FasPolicyPath": {
+    "aws": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-deployment.2020-12-04-21-54-22",
+    "aws-cn": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-deployment.2020-12-07-16-27-27-BJS",
+    "aws-us-gov": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-deployment.2020-12-07-16-29-34-PDT"
+  }
+}
