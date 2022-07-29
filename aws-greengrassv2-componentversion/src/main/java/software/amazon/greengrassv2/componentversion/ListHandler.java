@@ -17,10 +17,10 @@ public class ListHandler extends BaseHandler<CallbackContext> {
 
     @Override
     public ProgressEvent<ResourceModel, CallbackContext> handleRequest(
-        final AmazonWebServicesClientProxy proxy,
-        final ResourceHandlerRequest<ResourceModel> request,
-        final CallbackContext callbackContext,
-        final Logger logger) {
+            final AmazonWebServicesClientProxy proxy,
+            final ResourceHandlerRequest<ResourceModel> request,
+            final CallbackContext callbackContext,
+            final Logger logger) {
 
         final ResourceModel desiredResourceModel = request.getDesiredResourceState();
 
@@ -31,9 +31,9 @@ public class ListHandler extends BaseHandler<CallbackContext> {
                 proxy.injectCredentialsAndInvokeV2(listComponentVersionsRequest, ClientBuilder.getClient()::listComponentVersions);
 
         return ProgressEvent.<ResourceModel, CallbackContext>builder()
-            .resourceModels(Translator.translateFromListRequest(listComponentVersionsResponse))
-            .nextToken(listComponentVersionsResponse.nextToken())
-            .status(OperationStatus.SUCCESS)
-            .build();
+                .resourceModels(Translator.translateFromListResponse(listComponentVersionsResponse))
+                .nextToken(listComponentVersionsResponse.nextToken())
+                .status(OperationStatus.SUCCESS)
+                .build();
     }
 }
