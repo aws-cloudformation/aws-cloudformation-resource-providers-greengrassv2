@@ -8,13 +8,13 @@ phases:
       -  pip install --upgrade 'six==1.15.0'
       -  pip install --upgrade 'docker~=4.0'
       -  pip install --upgrade 'aws-sam-translator==1.22.0'
-      -  pip install --upgrade 'pyyaml < 6.0'
+      -  pip install --upgrade 'pyyaml<6.0'
       -  pip install pre-commit cloudformation-cli-java-plugin
   build:
     commands:
       - pre-commit run --all-files
       - |
-        if [ "$(ls -A $CODEBUILD_SRC_DIR)" ]; then
+        if [[ $(ls -A $CODEBUILD_SRC_DIR) ]]; then
           cd $CODEBUILD_SRC_DIR
           # skip hidden folders
           dirs=$(find . -not -path "\./\.*" -mindepth 1 -maxdepth 1 -type d)
