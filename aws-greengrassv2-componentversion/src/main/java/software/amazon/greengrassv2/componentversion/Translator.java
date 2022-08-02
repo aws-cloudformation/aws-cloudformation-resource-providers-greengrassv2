@@ -13,6 +13,8 @@ import software.amazon.awssdk.services.greengrassv2.model.DescribeComponentReque
 import software.amazon.awssdk.services.greengrassv2.model.DescribeComponentResponse;
 import software.amazon.awssdk.services.greengrassv2.model.ListComponentVersionsRequest;
 import software.amazon.awssdk.services.greengrassv2.model.ListComponentVersionsResponse;
+import software.amazon.awssdk.services.greengrassv2.model.ListTagsForResourceRequest;
+import software.amazon.awssdk.services.greengrassv2.model.ListTagsForResourceResponse;
 import software.amazon.awssdk.services.greengrassv2.model.TagResourceRequest;
 import software.amazon.awssdk.services.greengrassv2.model.UntagResourceRequest;
 import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
@@ -33,6 +35,17 @@ import java.util.stream.Stream;
  */
 
 public class Translator {
+
+  /**
+   * Request to list tags for a resource
+   * @param model resource model
+   * @return awsRequest the ListTagsForResource request
+   */
+  static ListTagsForResourceRequest translateToListTagsRequest(final ResourceModel model) {
+    return ListTagsForResourceRequest.builder()
+            .resourceArn(model.getArn())
+            .build();
+  }
 
   /**
    * Request to create a resource
@@ -69,14 +82,23 @@ public class Translator {
    * @return model resource model
    */
   static ResourceModel translateFromReadResponse(final DescribeComponentResponse describeComponentResponse) {
-    final Map<String, String> tags = describeComponentResponse.tags();
 
     return ResourceModel.builder()
             .arn(describeComponentResponse.arn())
             .componentVersion(describeComponentResponse.componentVersion())
             .componentName(describeComponentResponse.componentName())
-            .tags(tags != null ? tags : Collections.emptyMap())
             .build();
+  }
+
+  /**
+   * Translates resource object from sdk into a resource model
+   * @param listTagsForResourceResponse the listTagsForResourceResponse
+   * @return model resource model
+   */
+  static ResourceModel translateFromListTagsResponse(ResourceModel existingModel, final ListTagsForResourceResponse listTagsForResourceResponse) {
+    final Map<String, String> tags = listTagsForResourceResponse.tags();
+
+    return (tags != null && !tags.isEmpty()) ? existingModel.toBuilder().tags(tags).build() : existingModel;
   }
 
   /**
@@ -117,7 +139,7 @@ public class Translator {
    * @param listComponentVersionsResponse the aws service describe resource response
    * @return list of resource models
    */
-  static List<ResourceModel> translateFromListRequest(final ListComponentVersionsResponse listComponentVersionsResponse) {
+  static List<ResourceModel> translateFromListResponse(final ListComponentVersionsResponse listComponentVersionsResponse) {
     return streamOfOrEmpty(listComponentVersionsResponse.componentVersions())
         .map(resource -> ResourceModel.builder()
                 // Only populates primaryIdentifier (arn)
