@@ -93,6 +93,7 @@ public class Translator {
   /**
    * Translates resource object from sdk into a resource model
    * @param listTagsForResourceResponse the listTagsForResourceResponse
+   * @param existingModel the existing Resource Model to modify using Tags
    * @return model resource model
    */
   static ResourceModel translateFromListTagsResponse(ResourceModel existingModel, final ListTagsForResourceResponse listTagsForResourceResponse) {

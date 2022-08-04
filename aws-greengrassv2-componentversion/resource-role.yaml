@@ -27,6 +27,7 @@ Resources:
                 - "greengrass:DeleteComponent"
                 - "greengrass:DescribeComponent"
                 - "greengrass:ListComponentVersions"
+                - "greengrass:ListTagsForResource"
                 - "greengrass:TagResource"
                 - "greengrass:UntagResource"
                 - "lambda:GetFunction"
