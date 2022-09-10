@@ -19,16 +19,17 @@ import software.amazon.cloudformation.proxy.ResourceHandlerRequest;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class UpdateHandler extends BaseHandlerStd {
     private Logger logger;
     private static final String NOT_UPDATABLE_MESSAGE_FMT = "%s property cannot be updated.";
     protected ProgressEvent<ResourceModel, CallbackContext> handleRequest(
-        final AmazonWebServicesClientProxy proxy,
-        final ResourceHandlerRequest<ResourceModel> request,
-        final CallbackContext callbackContext,
-        final ProxyClient<GreengrassV2Client> proxyClient,
-        final Logger logger) {
+            final AmazonWebServicesClientProxy proxy,
+            final ResourceHandlerRequest<ResourceModel> request,
+            final CallbackContext callbackContext,
+            final ProxyClient<GreengrassV2Client> proxyClient,
+            final Logger logger) {
 
         this.logger = logger;
 
@@ -97,14 +98,17 @@ public class UpdateHandler extends BaseHandlerStd {
             ProgressEvent<ResourceModel, CallbackContext> progress) {
 
         final MapDifference<String, String> difference = Maps.difference(desiredResourceTags, previousResourceTags);
+        final Map<String, String> tagsToUpdate = desiredResourceTags.entrySet().stream().filter(e->difference.entriesDiffering().containsKey(e.getKey())).collect(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         final Map<String, String> tagsToAdd = difference.entriesOnlyOnLeft();
+        tagsToUpdate.putAll(tagsToAdd);
         final Map<String, String> tagsToRemove = difference.entriesOnlyOnRight();
 
         return progress
                 .then(progressEvent -> {
-                    if (!tagsToAdd.isEmpty()) {
+                    if (!tagsToUpdate.isEmpty()) {
                         return proxy.initiate("AWS-GreengrassV2-Deployment::Update::AddTags", proxyClient, progressEvent.getResourceModel(), progress.getCallbackContext())
-                                .translateToServiceRequest(model -> Translator.translateToTagResourceRequest(deploymentArn, tagsToAdd))
+                                .translateToServiceRequest(model -> Translator.translateToTagResourceRequest(deploymentArn, tagsToUpdate))
                                 .makeServiceCall((awsRequest, client) -> {
                                     try {
                                         return client.injectCredentialsAndInvokeV2(awsRequest, client.client()::tagResource);

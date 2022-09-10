@@ -32,7 +32,7 @@ _Type_: String
 
 _Minimum_: <code>1</code>
 
-_Maximum_: <code>128</code>
+_Maximum_: <code>64</code>
 
 _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 

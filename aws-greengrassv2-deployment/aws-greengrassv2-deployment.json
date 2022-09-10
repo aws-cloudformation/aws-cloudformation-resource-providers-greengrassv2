@@ -8,7 +8,7 @@
         "ComponentVersion": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 128
+          "maxLength": 64
         },
         "ConfigurationUpdate": {
           "$ref": "#/definitions/ComponentConfigurationUpdate"
@@ -279,7 +279,7 @@
     "DeploymentName": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 128
+      "maxLength": 256
     },
     "Components": {
       "type": "object",
