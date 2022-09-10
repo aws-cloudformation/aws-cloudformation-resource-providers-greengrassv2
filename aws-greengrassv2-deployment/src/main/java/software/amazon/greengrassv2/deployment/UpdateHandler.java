@@ -103,7 +103,7 @@ public class UpdateHandler extends BaseHandlerStd {
         return progress
                 .then(progressEvent -> {
                     if (!tagsToAdd.isEmpty()) {
-                        return proxy.initiate("AWS-GreengrassV2-ComponentVersion::Update::AddTags", proxyClient, progressEvent.getResourceModel(), progress.getCallbackContext())
+                        return proxy.initiate("AWS-GreengrassV2-Deployment::Update::AddTags", proxyClient, progressEvent.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(model -> Translator.translateToTagResourceRequest(deploymentArn, tagsToAdd))
                                 .makeServiceCall((awsRequest, client) -> {
                                     try {
@@ -119,7 +119,7 @@ public class UpdateHandler extends BaseHandlerStd {
                 })
                 .then(progressEvent ->{
                     if (!tagsToRemove.isEmpty()) {
-                        return proxy.initiate("AWS-GreengrassV2-ComponentVersion::Update::RemoveTags", proxyClient, progressEvent.getResourceModel(), progress.getCallbackContext())
+                        return proxy.initiate("AWS-GreengrassV2-Deployment::Update::RemoveTags", proxyClient, progressEvent.getResourceModel(), progress.getCallbackContext())
                                 .translateToServiceRequest(model -> Translator.translateToUntagResourceRequest(deploymentArn, tagsToRemove))
                                 .makeServiceCall((awsRequest, client) -> {
                                     try {
