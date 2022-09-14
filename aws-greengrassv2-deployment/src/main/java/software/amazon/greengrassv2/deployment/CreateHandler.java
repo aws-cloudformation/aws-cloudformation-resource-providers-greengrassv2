@@ -28,6 +28,9 @@ public class CreateHandler extends BaseHandlerStd {
 
         this.logger = logger;
 
+        logger.log(String.format("Creating deployment with deploymentName %s for account %s.",
+                request.getDesiredResourceState().getDeploymentName(), request.getAwsAccountId()));
+
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(this::validateDeploymentIdNotPresent)
                 .then(progress ->

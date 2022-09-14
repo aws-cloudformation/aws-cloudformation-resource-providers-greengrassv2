@@ -28,6 +28,8 @@ public class ListHandler extends BaseHandlerStd {
 
         this.logger = logger;
 
+        logger.log(String.format("Listing deployment for account %s.", request.getAwsAccountId()));
+
         final ListDeploymentsRequest listDeploymentsRequest =
                 Translator.translateToListRequest(request.getNextToken());
 
