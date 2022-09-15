@@ -1,0 +1,18 @@
+Resources:
+  TestDeployment:
+    Type: AWS::GreengrassV2::Deployment
+    Properties:
+      DeploymentName: DeploymentCFNCanaryDeployment
+      TargetArn: !Sub "arn:${AWS::Partition}:iot:${AWS::Region}:${AWS::AccountId}:thing/DeploymentCFNCanaryThing"
+      Components:
+        component2:
+          ComponentVersion: "1.0.24"
+      DeploymentPolicies:
+        FailureHandlingPolicy: DO_NOTHING
+        ComponentUpdatePolicy:
+          TimeoutInSeconds: 5000
+          Action: SKIP_NOTIFY_COMPONENTS
+        ConfigurationValidationPolicy:
+          TimeoutInSeconds: 30000
+      Tags:
+        Name: DeploymentCFNCanaryInitialTest

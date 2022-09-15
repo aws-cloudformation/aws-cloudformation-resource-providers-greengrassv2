@@ -34,3 +34,7 @@ sam-tests/
 /wrapper/
 /gradlew
 /gradlew.bat
+/build
+
+# generated zip
+aws-greengrassv2-deployment.zip

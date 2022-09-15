@@ -1,5 +1,16 @@
 Resources:
+  ComponentVersionCleanUpLambdaInvoke:
+    DeletionPolicy: Retain
+    Type: AWS::CloudFormation::CustomResource
+    Version: "1.0"
+    Properties:
+      ServiceToken:
+        Fn::ImportValue: ComponentCleanupLambdaArn
+      ResourceProperties:
+        Region: !Ref "AWS::Region"
+        ComponentVersionArn: !Sub "arn:${AWS::Partition}:greengrass:${AWS::Region}:${AWS::AccountId}:components:component1:versions:1.0.24"
   ComponentVersionInlineRecipeCanary:
+    DependsOn: ComponentVersionCleanUpLambdaInvoke
     Type: AWS::GreengrassV2::ComponentVersion
     Properties:
       InlineRecipe: "{\n    \"RecipeFormatVersion\": \"2020-01-25\",\n    \"ComponentName\": \"component1\",\n    \"ComponentVersion\": \"1.0.24\",\n    \"ComponentType\": \"aws.greengrass.generic\",\n    \"ComponentDescription\": \"This\",\n    \"ComponentPublisher\": \"You\",\n    \"Manifests\": [\n        {\n            \"Platform\": {\n                \"os\": \"darwin\"\n            },\n            \"Lifecycle\": {},\n            \"Artifacts\": []\n        },\n        {\n            \"Lifecycle\": {},\n            \"Artifacts\": []\n        }\n    ],\n    \"Lifecycle\": {\n        \"install\": {\n            \"script\": \"yuminstallpython\"\n        }\n    }\n}"

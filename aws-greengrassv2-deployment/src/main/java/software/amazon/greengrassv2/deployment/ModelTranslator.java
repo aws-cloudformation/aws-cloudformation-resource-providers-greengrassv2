@@ -156,7 +156,7 @@ public class ModelTranslator {
                         .minNumberOfExecutedThings(criterion.getMinNumberOfExecutedThings())
                         .thresholdPercentage(criterion.getThresholdPercentage())
                         .build()
-                ).collect(Collectors.toList());
+        ).collect(Collectors.toList());
     }
 
     private static List<software.amazon.greengrassv2.deployment.IoTJobAbortCriteria> translateToCfnIoTJobAbortCriteria(@NonNull List<IoTJobAbortCriteria> criteria) {
@@ -169,7 +169,7 @@ public class ModelTranslator {
                         .build()
         ).collect(Collectors.toList());
     }
-    
+
     private static IoTJobAbortConfig translateToSdkIoTJobAbortConfig(@NonNull software.amazon.greengrassv2.deployment.IoTJobAbortConfig config) {
         return IoTJobAbortConfig.builder()
                 .criteriaList(mapNullable(config.getCriteriaList(), ModelTranslator::translateToSdkIoTJobAbortCriteria))

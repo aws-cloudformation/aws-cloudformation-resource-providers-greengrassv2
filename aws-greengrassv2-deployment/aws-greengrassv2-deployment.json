@@ -8,7 +8,7 @@
         "ComponentVersion": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 128
+          "maxLength": 64
         },
         "ConfigurationUpdate": {
           "$ref": "#/definitions/ComponentConfigurationUpdate"
@@ -21,7 +21,7 @@
     },
     "SystemResourceLimits": {
       "type": "object",
-      "properties":  {
+      "properties": {
         "Memory": {
           "type": "integer",
           "format": "int64",
@@ -58,7 +58,7 @@
         "Merge": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 65535
+          "maxLength": 10485760
         },
         "Reset": {
           "type": "array",
@@ -192,15 +192,26 @@
     },
     "IoTJobRateIncreaseCriteria": {
       "type": "object",
-      "properties": {
-        "NumberOfNotifiedThings": {
-          "$ref": "#/definitions/NumberOfThings"
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "NumberOfNotifiedThings": {
+              "$ref": "#/definitions/NumberOfThings"
+            }
+          }
         },
-        "NumberOfSucceededThings": {
-          "$ref": "#/definitions/NumberOfThings"
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "NumberOfSucceededThings": {
+              "$ref": "#/definitions/NumberOfThings"
+            }
+          }
         }
-      },
-      "additionalProperties": false
+      ]
     },
     "NumberOfThings": {
       "type": "integer",
@@ -268,7 +279,7 @@
     "DeploymentName": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 128
+      "maxLength": 256
     },
     "Components": {
       "type": "object",
@@ -366,7 +377,7 @@
     "taggable": true,
     "tagOnCreate": true,
     "tagUpdatable": true,
-    "cloudFormationSystemTags": true,
+    "cloudFormationSystemTags": false,
     "tagProperty": "/properties/Tags"
   }
 }

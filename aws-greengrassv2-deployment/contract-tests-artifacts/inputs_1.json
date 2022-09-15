@@ -1,0 +1,73 @@
+{
+  "CreateInputs": {
+    "DeploymentName": "ContractTestDeployment",
+    "TargetArn": "{{awsgreengrassv2deploymentcto1}}",
+    "Components": {
+      "Component1": {
+        "ComponentVersion": "1.0.1",
+        "ConfigurationUpdate": {
+          "Merge": "{\"FirstItem\":{\"value\":\"foo\"},\"SecondItem\":{\"value\":\"bar\"}}"
+        }
+      },
+      "Component2": {
+        "ComponentVersion": "1.1.0",
+        "ConfigurationUpdate": {
+          "Merge": "{\"rooms\":{\"Office\":{\"temperature\":22,\"lights\":\"on\"},\"Conference Room\":{\"temperature\":20,\"lights\":\"auto\"}}}",
+          "Reset": [
+            "/rooms/Office",
+            "/rooms/Conference Room"
+          ]
+        },
+        "RunWith": {
+          "PosixUser": "user:group",
+          "WindowsUser": "winUser"
+        }
+      }
+    },
+    "IotJobConfiguration": {
+      "JobExecutionsRolloutConfig": {
+        "ExponentialRate": {
+          "BaseRatePerMinute": 1,
+          "IncrementFactor": 2.1,
+          "RateIncreaseCriteria": {
+            "NumberOfNotifiedThings": 1
+          }
+        },
+        "MaximumPerMinute": 1
+      },
+      "AbortConfig": {
+        "CriteriaList": [
+          {
+            "Action": "CANCEL",
+            "FailureType": "ALL",
+            "MinNumberOfExecutedThings": 1,
+            "ThresholdPercentage": 100.0
+          }
+        ]
+      },
+      "TimeoutConfig": {
+        "InProgressTimeoutInMinutes": 1
+      }
+    },
+    "DeploymentPolicies": {
+      "FailureHandlingPolicy": "DO_NOTHING",
+      "ComponentUpdatePolicy": {
+        "TimeoutInSeconds": 60,
+        "Action": "NOTIFY_COMPONENTS"
+      },
+      "ConfigurationValidationPolicy": {
+        "TimeoutInSeconds": 30
+      }
+    },
+    "Tags": {
+      "ContractTestTagKey1": "ContractTestTagValue1"
+    }
+  },
+  "PatchInputs": [
+    {
+      "op": "replace",
+      "path": "/Tags/ContractTestTagKey1",
+      "value": "ContractTestTagValue2"
+    }
+  ]
+}

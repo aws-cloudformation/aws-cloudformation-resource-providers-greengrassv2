@@ -163,8 +163,7 @@ public class DeleteHandlerTest extends AbstractTestBase {
 
     private static Stream<Arguments> provideCancelOrDeleteDeploymentExceptionsAndExpectedCfnExceptions() {
         // CancelDeployment: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_CancelDeployment.html#API_CancelDeployment_Errors.
-        // TODO: Replace with public documentation once DeleteDeployment doc is available:
-        //  https://code.amazon.com/packages/EvergreenFleetConfigurationServiceModel/blobs/93ec77e70c873571832ee852a01c90a38aed480b/--/model/DeleteDeployment.xml#L6-L14
+        // DeleteDeployment: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_DeleteDeployment.html#API_DeleteDeployment_Errors
         return Stream.of(
                 Arguments.of(ValidationException.class, CfnInvalidRequestException.class),
                 Arguments.of(AccessDeniedException.class, CfnAccessDeniedException.class),

@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  ContractTestThing:
+    Type: AWS::IoT::Thing
+    Properties:
+      ThingName: ContractTestThing
+Outputs:
+  ContractTestThingArn:
+    Value: !Sub
+      - arn:${AWS::Partition}:iot:${AWS::Region}:${AWS::AccountId}:thing/${ThingName}
+      - ThingName: !Ref ContractTestThing
+    Export:
+      Name: awsgreengrassv2deploymentcto1
