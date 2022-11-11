@@ -34,6 +34,10 @@ public class CreateHandler extends BaseHandlerStd {
 
         this.logger = logger;
 
+        logger.log(String.format("Creating component with name %s and version %s for account %s.",
+                request.getDesiredResourceState().getComponentName(),
+                request.getDesiredResourceState().getComponentVersion(), request.getAwsAccountId()));
+
         final ResourceModel desiredResourceState = request.getDesiredResourceState();
 
         return ProgressEvent.progress(desiredResourceState, callbackContext)
