@@ -23,6 +23,7 @@ public class ListHandler extends BaseHandler<CallbackContext> {
             final Logger logger) {
 
         final ResourceModel desiredResourceModel = request.getDesiredResourceState();
+        logger.log(String.format("Listing component versions for account %s.", request.getAwsAccountId()));
 
         final ListComponentVersionsRequest listComponentVersionsRequest =
                 Translator.translateToListRequest(request, request.getNextToken());

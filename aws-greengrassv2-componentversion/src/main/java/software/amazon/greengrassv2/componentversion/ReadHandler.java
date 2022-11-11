@@ -23,6 +23,9 @@ public class ReadHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
+        logger.log(String.format("Getting component version with name %s and version %s for account %s.",
+                request.getDesiredResourceState().getComponentName(),
+                request.getDesiredResourceState().getComponentVersion(), request.getAwsAccountId()));
 
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)

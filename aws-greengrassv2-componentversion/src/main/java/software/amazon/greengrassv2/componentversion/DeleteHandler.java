@@ -16,28 +16,31 @@ public class DeleteHandler extends BaseHandlerStd {
     private Logger logger;
 
     protected ProgressEvent<ResourceModel, CallbackContext> handleRequest(
-        final AmazonWebServicesClientProxy proxy,
-        final ResourceHandlerRequest<ResourceModel> request,
-        final CallbackContext callbackContext,
-        final ProxyClient<GreengrassV2Client> proxyClient,
-        final Logger logger) {
+            final AmazonWebServicesClientProxy proxy,
+            final ResourceHandlerRequest<ResourceModel> request,
+            final CallbackContext callbackContext,
+            final ProxyClient<GreengrassV2Client> proxyClient,
+            final Logger logger) {
 
         this.logger = logger;
+        logger.log(String.format("Deleting component with name %s and version %s for account %s.",
+                request.getDesiredResourceState().getComponentName(),
+                request.getDesiredResourceState().getComponentVersion(), request.getAwsAccountId()));
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
-            .then(progress ->
-                proxy.initiate("AWS-GreengrassV2-ComponentVersion::Delete", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
-                        .translateToServiceRequest(Translator::translateToDeleteRequest)
-                        .makeServiceCall((awsRequest, client) ->  {
-                            try {
-                                return client.injectCredentialsAndInvokeV2(awsRequest, client.client()::deleteComponent);
-                            } catch (Exception ex) {
-                                throw ExceptionTranslator.translateToCfnExceptionForCreatedResource(
-                                        "DeleteComponent", request.getDesiredResourceState().getArn(), ex);
-                            }
-                        })
-                        .progress()
-            )
-            .then(progress -> ProgressEvent.defaultSuccessHandler(null));
+                .then(progress ->
+                        proxy.initiate("AWS-GreengrassV2-ComponentVersion::Delete", proxyClient, progress.getResourceModel(), progress.getCallbackContext())
+                                .translateToServiceRequest(Translator::translateToDeleteRequest)
+                                .makeServiceCall((awsRequest, client) ->  {
+                                    try {
+                                        return client.injectCredentialsAndInvokeV2(awsRequest, client.client()::deleteComponent);
+                                    } catch (Exception ex) {
+                                        throw ExceptionTranslator.translateToCfnExceptionForCreatedResource(
+                                                "DeleteComponent", request.getDesiredResourceState().getArn(), ex);
+                                    }
+                                })
+                                .progress()
+                )
+                .then(progress -> ProgressEvent.defaultSuccessHandler(null));
     }
 }
