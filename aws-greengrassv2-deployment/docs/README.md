@@ -118,4 +118,3 @@ For more information about using the `Fn::GetAtt` intrinsic function, see [Fn::G
 #### DeploymentId
 
 Returns the <code>DeploymentId</code> value.
-
