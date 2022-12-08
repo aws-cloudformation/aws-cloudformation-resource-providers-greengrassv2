@@ -40,6 +40,7 @@ public class Translator {
                                                           final Map<String, String> desiredResourceTags) {
     return CreateDeploymentRequest.builder()
             .targetArn(model.getTargetArn())
+            .parentTargetArn(model.getParentTargetArn())
             .deploymentPolicies(ModelTranslator.mapNullable(model.getDeploymentPolicies(),
                     ModelTranslator::translateToSdkDeploymentPolicies))
             .iotJobConfiguration(ModelTranslator.mapNullable(model.getIotJobConfiguration(),
@@ -73,6 +74,7 @@ public class Translator {
             .deploymentId(response.deploymentId())
             .deploymentName(response.deploymentName())
             .targetArn(response.targetArn())
+            .parentTargetArn(response.parentTargetArn())
             .components(ModelTranslator.mapNullable(response.components(), ModelTranslator::translateToCfnComponentDeploymentSpecs))
             .deploymentPolicies(ModelTranslator.mapNullable(response.deploymentPolicies(), ModelTranslator::translateToCfnDeploymentPolicies))
             .iotJobConfiguration(ModelTranslator.mapNullable(response.iotJobConfiguration(), ModelTranslator::translateToCfnDeploymentIoTJobConfiguration))

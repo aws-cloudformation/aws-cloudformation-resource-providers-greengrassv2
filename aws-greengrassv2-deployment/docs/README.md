@@ -13,6 +13,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
     "Type" : "AWS::GreengrassV2::Deployment",
     "Properties" : {
         "<a href="#targetarn" title="TargetArn">TargetArn</a>" : <i>String</i>,
+        "<a href="#parenttargetarn" title="ParentTargetArn">ParentTargetArn</a>" : <i>String</i>,
         "<a href="#deploymentname" title="DeploymentName">DeploymentName</a>" : <i>String</i>,
         "<a href="#components" title="Components">Components</a>" : <i><a href="components.md">Components</a></i>,
         "<a href="#iotjobconfiguration" title="IotJobConfiguration">IotJobConfiguration</a>" : <i><a href="deploymentiotjobconfiguration.md">DeploymentIoTJobConfiguration</a></i>,
@@ -28,6 +29,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 Type: AWS::GreengrassV2::Deployment
 Properties:
     <a href="#targetarn" title="TargetArn">TargetArn</a>: <i>String</i>
+    <a href="#parenttargetarn" title="ParentTargetArn">ParentTargetArn</a>: <i>String</i>
     <a href="#deploymentname" title="DeploymentName">DeploymentName</a>: <i>String</i>
     <a href="#components" title="Components">Components</a>: <i><a href="components.md">Components</a></i>
     <a href="#iotjobconfiguration" title="IotJobConfiguration">IotJobConfiguration</a>: <i><a href="deploymentiotjobconfiguration.md">DeploymentIoTJobConfiguration</a></i>
@@ -40,6 +42,16 @@ Properties:
 #### TargetArn
 
 _Required_: Yes
+
+_Type_: String
+
+_Pattern_: <code>arn:[^:]*:iot:[^:]*:[0-9]+:(thing|thinggroup)/.+</code>
+
+_Update requires_: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
+
+#### ParentTargetArn
+
+_Required_: No
 
 _Type_: String
 
@@ -106,3 +118,4 @@ For more information about using the `Fn::GetAtt` intrinsic function, see [Fn::G
 #### DeploymentId
 
 Returns the <code>DeploymentId</code> value.
+

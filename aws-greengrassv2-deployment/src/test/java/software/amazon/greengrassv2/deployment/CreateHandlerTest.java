@@ -55,6 +55,7 @@ import static org.mockito.Mockito.times;
 import static software.amazon.greengrassv2.deployment.TestUtils.TEST_DEPLOYMENT_ID;
 import static software.amazon.greengrassv2.deployment.TestUtils.TEST_DEPLOYMENT_NAME;
 import static software.amazon.greengrassv2.deployment.TestUtils.TEST_THING_GROUP_ARN;
+import static software.amazon.greengrassv2.deployment.TestUtils.TEST_THING_GROUP_ARN_1;
 
 @ExtendWith(MockitoExtension.class)
 public class CreateHandlerTest extends AbstractTestBase {
@@ -118,6 +119,56 @@ public class CreateHandlerTest extends AbstractTestBase {
         assertThat(response.getResourceModel().getDeploymentId()).isEqualTo(TEST_DEPLOYMENT_ID);
         assertThat(response.getResourceModel().getDeploymentName()).isEqualTo(TEST_DEPLOYMENT_NAME);
         assertThat(response.getResourceModel().getTargetArn()).isEqualTo(TEST_THING_GROUP_ARN);
+        assertThat(response.getResourceModel().getParentTargetArn()).isNull();
+        assertThat(response.getResourceModels()).isNull();
+        assertThat(response.getMessage()).isNull();
+        assertThat(response.getErrorCode()).isNull();
+
+        InOrder order = inOrder(greengrassV2Client);
+        order.verify(greengrassV2Client, times(1)).createDeployment(any(CreateDeploymentRequest.class));
+        order.verify(greengrassV2Client, times(1)).getDeployment(any(GetDeploymentRequest.class));
+        order.verifyNoMoreInteractions();
+    }
+
+    @Test
+    public void handleRequest_with_subdeployment_SimpleSuccess() {
+        final ResourceModel model = ResourceModel.builder()
+                .deploymentName(TEST_DEPLOYMENT_NAME)
+                .targetArn(TEST_THING_GROUP_ARN_1)
+                .parentTargetArn(TEST_THING_GROUP_ARN)
+                .build();
+
+        final ResourceHandlerRequest<ResourceModel> request = ResourceHandlerRequest.<ResourceModel>builder()
+                .desiredResourceState(model)
+                .build();
+
+        CreateDeploymentResponse createDeploymentResponse = CreateDeploymentResponse.builder()
+                .deploymentId(TEST_DEPLOYMENT_ID)
+                .build();
+
+        GetDeploymentResponse getDeploymentResponse = GetDeploymentResponse.builder()
+                .deploymentId(TEST_DEPLOYMENT_ID)
+                .deploymentName(TEST_DEPLOYMENT_NAME)
+                .targetArn(TEST_THING_GROUP_ARN_1)
+                .parentTargetArn(TEST_THING_GROUP_ARN)
+                .build();
+
+        doReturn(createDeploymentResponse)
+                .when(greengrassV2Client)
+                .createDeployment(any(CreateDeploymentRequest.class));
+        doReturn(getDeploymentResponse)
+                .when(greengrassV2Client)
+                .getDeployment(any(GetDeploymentRequest.class));
+
+        final ProgressEvent<ResourceModel, CallbackContext> response = handler.handleRequest(proxy, request, new CallbackContext(), proxyClient, logger);
+
+        assertThat(response).isNotNull();
+        assertThat(response.getStatus()).isEqualTo(OperationStatus.SUCCESS);
+        assertThat(response.getCallbackDelaySeconds()).isEqualTo(0);
+        assertThat(response.getResourceModel().getDeploymentId()).isEqualTo(TEST_DEPLOYMENT_ID);
+        assertThat(response.getResourceModel().getDeploymentName()).isEqualTo(TEST_DEPLOYMENT_NAME);
+        assertThat(response.getResourceModel().getTargetArn()).isEqualTo(TEST_THING_GROUP_ARN_1);
+        assertThat(response.getResourceModel().getParentTargetArn()).isEqualTo(TEST_THING_GROUP_ARN);
         assertThat(response.getResourceModels()).isNull();
         assertThat(response.getMessage()).isNull();
         assertThat(response.getErrorCode()).isNull();
