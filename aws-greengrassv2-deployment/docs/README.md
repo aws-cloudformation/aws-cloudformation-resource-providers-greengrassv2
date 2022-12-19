@@ -55,7 +55,7 @@ _Required_: No
 
 _Type_: String
 
-_Pattern_: <code>arn:[^:]*:iot:[^:]*:[0-9]+:(thing|thinggroup)/.+</code>
+_Pattern_: <code>arn:[^:]*:iot:[^:]*:[0-9]+:thinggroup/.+</code>
 
 _Update requires_: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 

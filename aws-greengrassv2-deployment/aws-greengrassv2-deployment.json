@@ -274,7 +274,7 @@
     },
     "ParentTargetArn": {
       "type": "string",
-      "pattern": "arn:[^:]*:iot:[^:]*:[0-9]+:(thing|thinggroup)/.+"
+      "pattern": "arn:[^:]*:iot:[^:]*:[0-9]+:thinggroup/.+"
     },
     "DeploymentId": {
       "type": "string",
