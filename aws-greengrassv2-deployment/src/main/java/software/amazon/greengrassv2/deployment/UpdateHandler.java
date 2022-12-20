@@ -66,6 +66,11 @@ public class UpdateHandler extends BaseHandlerStd {
                     HandlerErrorCode.NotUpdatable, String.format(NOT_UPDATABLE_MESSAGE_FMT, "TargetArn"));
         }
 
+        if (!Objects.equals(desiredResourceState.getParentTargetArn(), previousResourceState.getParentTargetArn())) {
+            return ProgressEvent.failed(previousResourceState, progressEvent.getCallbackContext(),
+                    HandlerErrorCode.NotUpdatable, String.format(NOT_UPDATABLE_MESSAGE_FMT, "ParentTargetArn"));
+        }
+
         if (!Objects.equals(desiredResourceState.getComponents(), previousResourceState.getComponents())) {
             return ProgressEvent.failed(previousResourceState, progressEvent.getCallbackContext(),
                     HandlerErrorCode.NotUpdatable, String.format(NOT_UPDATABLE_MESSAGE_FMT, "Component"));
