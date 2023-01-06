@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - aws iot delete-thing-group --thing-group-name ContractTestThingGroup
+      - echo "Deleted thing group ContractTestThingGroup"
+      - aws iot delete-thing-group --thing-group-name ContractTestSubThingGroup
+      - echo "Deleted thing group ContractTestSubThingGroup"
+  post_build:
+    commands:
+      - echo Build completed on `date`

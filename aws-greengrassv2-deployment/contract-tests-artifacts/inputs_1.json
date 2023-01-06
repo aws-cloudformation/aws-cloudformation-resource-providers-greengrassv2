@@ -1,7 +1,8 @@
 {
   "CreateInputs": {
     "DeploymentName": "ContractTestDeployment",
-    "TargetArn": "{{awsgreengrassv2deploymentcto1}}",
+    "TargetArn": "{{awsgreengrassv2deploymentcto2}}",
+    "ParentTargetArn": "{{awsgreengrassv2deploymentcto3}}",
     "Components": {
       "Component1": {
         "ComponentVersion": "1.0.1",

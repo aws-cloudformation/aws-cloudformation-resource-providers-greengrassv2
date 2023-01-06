@@ -11,3 +11,15 @@ Outputs:
       - ThingName: !Ref ContractTestThing
     Export:
       Name: awsgreengrassv2deploymentcto1
+  ContractTestThingGroupArn:
+    Value: !Sub
+      - arn:${AWS::Partition}:iot:${AWS::Region}:${AWS::AccountId}:thinggroup/${ThingGroupName}
+      - ThingGroupName: ContractTestThingGroup
+    Export:
+      Name: awsgreengrassv2deploymentcto2
+  ContractTestSubThingGroupArn:
+    Value: !Sub
+      - arn:${AWS::Partition}:iot:${AWS::Region}:${AWS::AccountId}:thinggroup/${ThingGroupName}
+      - ThingGroupName: ContractTestSubThingGroup
+    Export:
+      Name: awsgreengrassv2deploymentcto3

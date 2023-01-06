@@ -1,0 +1,2 @@
+# This file exists to allow you to define more resources to use in the pre-script
+# Ex - https://code.amazon.com/packages/AWSCloudFormationResourceProvidersEC2VPNConnection-TB/blobs/mainline/--/aws-ec2-vpnconnection/contract-tests-artifacts/pre-script/buildspec.yml

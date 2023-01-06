@@ -79,7 +79,7 @@ task rpdkPackage(type: Zip) {
     from ("${rootDir}/${resource_name_with_dashes}") {
         include "settings.internal.json"
         // Inject contract test v2
-        include 'contract-tests-artifacts/*'
+        include 'contract-tests-artifacts/**/*'
         include 'canary-bundle/**/*'
     }
     destinationDir = file('./build/rpdk')

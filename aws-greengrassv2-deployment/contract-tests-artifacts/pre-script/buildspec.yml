@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - aws iot create-thing-group --thing-group-name ContractTestThingGroup
+      - echo "Created thing group ContractTestThingGroup"
+      - aws iot create-thing-group --thing-group-name ContractTestSubThingGroup
+      - echo "Created thing group ContractTestSubThingGroup"
+      - aws cloudformation list-exports | jq -r '.'
+  post_build:
+    commands:
+      - echo Build completed on `date`
