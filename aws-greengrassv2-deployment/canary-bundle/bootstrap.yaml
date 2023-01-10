@@ -6,6 +6,9 @@ Resources:
   DeploymentSetupLambdaInvoke:
     DependsOn: DeploymentCFNCanaryThing
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Delete
+    Metadata:
+      Comment: "Adding DeletionPolicy and UpdateReplacePolicy for Cloudformation Deployment Safety"
     Type: AWS::CloudFormation::CustomResource
     Version: "1.0"
     Properties:
