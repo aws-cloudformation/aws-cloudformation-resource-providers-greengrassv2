@@ -4,7 +4,6 @@
  */
 
 package software.amazon.greengrassv2.componentversion;
-
 import software.amazon.awssdk.services.greengrassv2.GreengrassV2Client;
 import software.amazon.cloudformation.proxy.AmazonWebServicesClientProxy;
 import software.amazon.cloudformation.proxy.HandlerErrorCode;
@@ -26,8 +25,7 @@ public abstract class BaseHandlerStd extends BaseHandler<CallbackContext> {
       proxy,
       request,
       callbackContext != null ? callbackContext : new CallbackContext(),
-      proxy.newProxy(ClientBuilder::getClient),
-      logger
+      proxy.newProxy(ClientBuilder::getClient)
     );
   }
 
