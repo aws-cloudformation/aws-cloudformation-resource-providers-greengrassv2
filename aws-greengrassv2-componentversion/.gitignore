@@ -22,3 +22,5 @@ rpdk.log
 
 # contains credentials
 sam-tests/
+
+aws-greengrassv2-componentversion.zip

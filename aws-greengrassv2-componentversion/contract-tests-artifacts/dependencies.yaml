@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  ContractTestComponent:
+    Type: AWS::GreengrassV2::ComponentVersion
+    Properties:
+      InlineRecipe: "{\n    \"RecipeFormatVersion\": \"2020-01-25\",\n    \"ComponentName\": \"component1\",\n    \"ComponentVersion\": \"1.0.2\",\n    \"ComponentType\": \"aws.greengrass.generic\",\n    \"ComponentDescription\": \"This\",\n    \"ComponentPublisher\": \"You\",\n    \"Manifests\": [\n        {\n            \"Platform\": {\n                \"os\": \"darwin\"\n            },\n            \"Lifecycle\": {},\n            \"Artifacts\": []\n        },\n        {\n            \"Lifecycle\": {},\n            \"Artifacts\": []\n        }\n    ],\n    \"Lifecycle\": {\n        \"install\": {\n            \"script\": \"yuminstallpython\"\n        }\n    }\n}"
+Outputs:
+  ContractTestComponentArn:
+    Value: !Sub "arn:${AWS::Partition}:greengrass:${AWS::Region}:${AWS::AccountId}:components:component1"
+    Export:
+      Name: awsgreengrassv2componentversioncto1
