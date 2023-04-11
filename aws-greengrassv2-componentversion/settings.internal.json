@@ -2,6 +2,8 @@
   "FasPolicyPath": {
     "aws": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-componentversion.2022-08-10-19-58-43",
     "aws-cn": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-componentversion.2022-08-11-23-35-51-BJS",
-    "aws-us-gov": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-componentversion.2022-08-11-23-41-30-PDT"
+    "aws-us-gov": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-componentversion.2022-08-11-23-41-30-PDT",
+    "aws-iso": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-componentversion.2022-08-10-19-58-43",
+    "aws-iso-b": "/policies/AuthRuntime/authNPolicy/cloudformation/aws-greengrassv2-componentversion.2022-08-10-19-58-43"
   }
 }
