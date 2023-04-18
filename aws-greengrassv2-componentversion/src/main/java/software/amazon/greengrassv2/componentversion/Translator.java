@@ -123,14 +123,7 @@ public class Translator {
   static ListComponentVersionsRequest translateToListRequest(final ResourceHandlerRequest<ResourceModel> request,
                                                              final String nextToken) {
     return ListComponentVersionsRequest.builder()
-            .arn(Arn.builder()
-                    .partition(request.getAwsPartition())
-                    .region(request.getRegion())
-                    .accountId(request.getAwsAccountId())
-                    .service("greengrass")
-                    .resource("components:" + request.getDesiredResourceState().getComponentName())
-                    .build()
-                    .toString())
+            .arn(request.getDesiredResourceState().getArn())
             .nextToken(nextToken)
             .build();
   }
