@@ -70,6 +70,7 @@ public class CreateTranslator {
               .maxQueueSize(modelParams.getMaxQueueSize())
               .pinned(modelParams.getPinned())
               .statusTimeoutInSeconds(modelParams.getStatusTimeoutInSeconds())
+              .timeoutInSeconds(modelParams.getTimeoutInSeconds())
               .build();
     }
 
