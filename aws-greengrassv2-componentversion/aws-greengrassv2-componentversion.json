@@ -290,6 +290,8 @@
       "permissions": [
         "greengrass:CreateComponentVersion",
         "greengrass:DescribeComponent",
+        "greengrass:ListTagsForResource",
+        "greengrass:TagResource",
         "lambda:GetFunction",
         "s3:GetObject"
       ]
@@ -302,6 +304,8 @@
     },
     "update": {
       "permissions": [
+        "greengrass:DescribeComponent",
+        "greengrass:ListTagsForResource",
         "greengrass:TagResource",
         "greengrass:UntagResource"
       ]
