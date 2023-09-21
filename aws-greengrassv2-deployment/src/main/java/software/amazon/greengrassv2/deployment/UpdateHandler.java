@@ -32,6 +32,8 @@ public class UpdateHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
+        logger.log(String.format("Updating deployment for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
         final String deploymentArn = getDeploymentArnFromRequest(request);
 

@@ -23,10 +23,8 @@ public class ReadHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
-        logger.log(String.format("Getting component version with name %s and version %s for account %s.",
-                request.getDesiredResourceState().getComponentName(),
-                request.getDesiredResourceState().getComponentVersion(), request.getAwsAccountId()));
-
+        logger.log(String.format("Reading component version for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(this::validateArnPresent)

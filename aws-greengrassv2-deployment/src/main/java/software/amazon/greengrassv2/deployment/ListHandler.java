@@ -27,8 +27,8 @@ public class ListHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
-
-        logger.log(String.format("Listing deployment for account %s.", request.getAwsAccountId()));
+        logger.log(String.format("Listing deployments for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
         final ListDeploymentsRequest listDeploymentsRequest =
                 Translator.translateToListRequest(request.getNextToken());

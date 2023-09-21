@@ -23,8 +23,8 @@ public class DeleteHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
-        logger.log(String.format("Deleting deployment with deploymentId %s for account %s.",
-                request.getDesiredResourceState().getDeploymentId(), request.getAwsAccountId()));
+        logger.log(String.format("Deleting deployment for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
         // Deployment should be cancelled before deleted.
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)

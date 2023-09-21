@@ -29,6 +29,8 @@ public class UpdateHandler extends BaseHandlerStd {
         final Logger logger) {
 
         this.logger = logger;
+        logger.log(String.format("Updating component version for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(this::validateArnPresent)
