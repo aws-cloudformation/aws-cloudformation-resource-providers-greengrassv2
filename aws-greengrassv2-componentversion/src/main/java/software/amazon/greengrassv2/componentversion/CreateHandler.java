@@ -33,14 +33,10 @@ public class CreateHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
+        logger.log(String.format("Creating component for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
-        logger.log(String.format("Creating component with name %s and version %s for account %s.",
-                request.getDesiredResourceState().getComponentName(),
-                request.getDesiredResourceState().getComponentVersion(), request.getAwsAccountId()));
-
-        final ResourceModel desiredResourceState = request.getDesiredResourceState();
-
-        return ProgressEvent.progress(desiredResourceState, callbackContext)
+        return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(this::validateReadOnlyPropertiesNotPresent)
                 .then(this::validateOnlyOneRecipeSourcePresent)
                 .then(progress ->
