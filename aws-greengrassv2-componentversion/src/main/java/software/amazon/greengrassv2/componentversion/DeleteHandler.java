@@ -23,9 +23,8 @@ public class DeleteHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
-        logger.log(String.format("Deleting component with name %s and version %s for account %s.",
-                request.getDesiredResourceState().getComponentName(),
-                request.getDesiredResourceState().getComponentVersion(), request.getAwsAccountId()));
+        logger.log(String.format("Deleting component for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(progress ->

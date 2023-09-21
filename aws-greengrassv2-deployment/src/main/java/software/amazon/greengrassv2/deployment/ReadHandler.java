@@ -26,8 +26,8 @@ public class ReadHandler extends BaseHandlerStd {
             final Logger logger) {
 
         this.logger = logger;
-        logger.log(String.format("Getting deployment with deploymentId %s for account %s.",
-                request.getDesiredResourceState().getDeploymentId(), request.getAwsAccountId()));
+        logger.log(String.format("Reading deployment for account %s: %s",
+                request.getAwsAccountId(), request.getDesiredResourceState().toString()));
 
         return ProgressEvent.progress(request.getDesiredResourceState(), callbackContext)
                 .then(this::validateDeploymentIdPresent)
