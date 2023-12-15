@@ -313,7 +313,8 @@
     }
   },
   "required": [
-    "TargetArn"
+    "TargetArn",
+    "ComponentVersion"
   ],
   "primaryIdentifier": [
     "/properties/DeploymentId"
