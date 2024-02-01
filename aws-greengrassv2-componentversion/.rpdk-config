@@ -1,7 +1,7 @@
 {
     "typeName": "AWS::GreengrassV2::ComponentVersion",
     "language": "java",
-    "runtime": "java8",
+    "runtime": "java17",
     "entrypoint": "software.amazon.greengrassv2.componentversion.HandlerWrapper::handleRequest",
     "testEntrypoint": "software.amazon.greengrassv2.componentversion.HandlerWrapper::testEntrypoint",
     "settings": {
@@ -19,5 +19,6 @@
         "codegen_template_path": "guided_aws",
         "protocolVersion": "2.0.0"
     },
+    "logProcessorEnabled": "true",
     "executableEntrypoint": "software.amazon.greengrassv2.componentversion.HandlerWrapperExecutable"
 }
