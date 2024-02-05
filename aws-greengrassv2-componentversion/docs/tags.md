@@ -1,4 +1,4 @@
-# AWS::GreengrassV2::Deployment Tags
+# AWS::GreengrassV2::ComponentVersion Tags
 
 ## Syntax
 
@@ -8,19 +8,19 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 <pre>
 {
-    "<a href="#.*" title=".*">.*</a>" : <i>String</i>
+    "<a href="#^(?!aws:)[a-za-z+-=._:/]{1,128}$" title="^(?!aws:)[a-zA-Z+-=._:/]{1,128}$">^(?!aws:)[a-zA-Z+-=._:/]{1,128}$</a>" : <i>String</i>
 }
 </pre>
 
 ### YAML
 
 <pre>
-<a href="#.*" title=".*">.*</a>: <i>String</i>
+<a href="#^(?!aws:)[a-za-z+-=._:/]{1,128}$" title="^(?!aws:)[a-zA-Z+-=._:/]{1,128}$">^(?!aws:)[a-zA-Z+-=._:/]{1,128}$</a>: <i>String</i>
 </pre>
 
 ## Properties
 
-#### \.*
+#### \^(?!aws:)[a-zA-Z+-=._:/]{1,128}$
 
 _Required_: No
 

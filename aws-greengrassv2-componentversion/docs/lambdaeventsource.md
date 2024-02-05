@@ -1,4 +1,4 @@
-# AWS::GreengrassV2::Deployment ComponentConfigurationUpdate
+# AWS::GreengrassV2::ComponentVersion LambdaEventSource
 
 ## Syntax
 
@@ -8,37 +8,34 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 <pre>
 {
-    "<a href="#merge" title="Merge">Merge</a>" : <i>String</i>,
-    "<a href="#reset" title="Reset">Reset</a>" : <i>[ String, ... ]</i>
+    "<a href="#topic" title="Topic">Topic</a>" : <i>String</i>,
+    "<a href="#type" title="Type">Type</a>" : <i>String</i>
 }
 </pre>
 
 ### YAML
 
 <pre>
-<a href="#merge" title="Merge">Merge</a>: <i>String</i>
-<a href="#reset" title="Reset">Reset</a>: <i>
-      - String</i>
+<a href="#topic" title="Topic">Topic</a>: <i>String</i>
+<a href="#type" title="Type">Type</a>: <i>String</i>
 </pre>
 
 ## Properties
 
-#### Merge
+#### Topic
 
 _Required_: No
 
 _Type_: String
 
-_Minimum Length_: <code>1</code>
-
-_Maximum Length_: <code>10485760</code>
-
 _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 
-#### Reset
+#### Type
 
 _Required_: No
 
-_Type_: List of String
+_Type_: String
+
+_Allowed Values_: <code>PUB_SUB</code> | <code>IOT_CORE</code>
 
 _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)

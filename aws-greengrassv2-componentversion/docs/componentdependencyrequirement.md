@@ -1,4 +1,4 @@
-# AWS::GreengrassV2::Deployment ComponentConfigurationUpdate
+# AWS::GreengrassV2::ComponentVersion ComponentDependencyRequirement
 
 ## Syntax
 
@@ -8,37 +8,34 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 <pre>
 {
-    "<a href="#merge" title="Merge">Merge</a>" : <i>String</i>,
-    "<a href="#reset" title="Reset">Reset</a>" : <i>[ String, ... ]</i>
+    "<a href="#versionrequirement" title="VersionRequirement">VersionRequirement</a>" : <i>String</i>,
+    "<a href="#dependencytype" title="DependencyType">DependencyType</a>" : <i>String</i>
 }
 </pre>
 
 ### YAML
 
 <pre>
-<a href="#merge" title="Merge">Merge</a>: <i>String</i>
-<a href="#reset" title="Reset">Reset</a>: <i>
-      - String</i>
+<a href="#versionrequirement" title="VersionRequirement">VersionRequirement</a>: <i>String</i>
+<a href="#dependencytype" title="DependencyType">DependencyType</a>: <i>String</i>
 </pre>
 
 ## Properties
 
-#### Merge
+#### VersionRequirement
 
 _Required_: No
 
 _Type_: String
 
-_Minimum Length_: <code>1</code>
-
-_Maximum Length_: <code>10485760</code>
-
 _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 
-#### Reset
+#### DependencyType
 
 _Required_: No
 
-_Type_: List of String
+_Type_: String
+
+_Allowed Values_: <code>SOFT</code> | <code>HARD</code>
 
 _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
