@@ -52,10 +52,31 @@ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d
 ```
 ### Troubleshooting (Brazil)
 
-> I am unable to download the contract test container.
+---
+Q. Registration verification approval workflow step is failing in pipeline with: `Canaries not found, please register type canaries and retry the registration to re-run readiness review.`
 
-1. Check to make sure Docker is installed.
-2. 
+A. Retry type registration ([Uluru LPT Onboarding FAQ #13](https://w.amazon.com/bin/view/AWS21/Design/Uluru/Onboarding_Guide/Uluru_Lpt_Onboarding#H13.Howtoretrytyperegistrationwithoutdeployinganewchange3F)) and retry the approval step.
+
+```text
+Sometimes type registration may fail due to various reasons. See a [tracking ticket here](https://issues.amazon.com/issues/CFN-35470). 
+
+A re-run on the workflow won't help to this issue as it's based on the same resource type registration token.  To re-try the registration, you can manual trigger a new registration as following:
+
+    Click the CloudFormation stack link from the pipeline. It will take you to the cloud-formation stack for this environment.
+    Click `Update` stack, use previous template
+    Update `RetryRegistration` input box with a different value
+    Submit to update the stack.
+
+![screen shot of retry type registration](https://drive-render.corp.amazon.com/view/libruce@/wiki/Uluru-pipeline-retry_CFNRegistryAWSLogsStack.png )
+
+Note (probably not needed): Make sure clean up the S3 bucket in `VersionMappingBucket` resource, the S3 bucket name should be something like `cfnregistrycfninternaldummyv-versionmappingbucket-ux76szkjqphk`. This bucket will cache the resource Version ID for same package, clean it up can force it re-registration. For Prod, sometimes you need to create a separate role as it requires breakglass.
+```
+
+---
+Q. What is the meaning of schema warning codes like `ARN002` and `RQ001`?
+
+A. Check the guard rail docs for [BASIC_LINTING](https://code.amazon.com/packages/CFNResourceSchemaGuardRail/blobs/mainline/--/docs/BASIC_LINTING.md#) and [BREAKING_CHANGE](https://code.amazon.com/packages/CFNResourceSchemaGuardRail/blobs/mainline/--/docs/BREAKING_CHANGE.md#):
+
 ## Steps to build, run UTs and test in the personal account (Maven).
 
 1. Go to CFN resource directory(e.g. `aws-greengrassv2-componentversion`).
@@ -76,11 +97,14 @@ Before that, run `pip3 install pre-commit cloudformation-cli-java-plugin` to ins
 
 ### Troubleshooting (Maven)
 
-> My GitHub Pull Request failed the automated check.
+---
+Q. My GitHub Pull Request failed the automated check.
 
-1. Make sure to run the pre-commit hook (step 11 in Steps to build).
-2. If you have run it and are still getting the error, you can log into the shared `cfn-uluru+ci` account `485432771924` to view the results.
+A. Make sure to run the pre-commit hook (step 11 in Steps to build). If you have run it and are still getting the error, you can log into the shared `cfn-uluru+ci` account `485432771924` to view the results.
 
-> I get the error: Fatal error compiling: java.lang.ExceptionInInitializerError: Unable to make field private com.sun.tools.javac.processing.JavacProcessingEnvironment$DiscoveredProcessors
+---
+Q. I get an error during `mvn install`: Fatal error compiling: java.lang.ExceptionInInitializerError: Unable to make field private com.sun.tools.javac.processing.JavacProcessingEnvironment$DiscoveredProcessors
 
-1. Try updating the Lombok version in the `pom.xml` file.
+A. Try updating the Lombok version in the `pom.xml` file.
+
+---
