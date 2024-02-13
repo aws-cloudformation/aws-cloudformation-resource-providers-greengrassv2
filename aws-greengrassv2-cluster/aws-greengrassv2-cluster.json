@@ -1,0 +1,130 @@
+{
+  "typeName": "AWS::GreengrassV2::Cluster",
+  "description": "Resource for Greengrass V2 cluster.",
+  "definitions": {
+    "ClusterConfiguration": {
+      "type": "object",
+      "properties": {
+        "MinimumLeaderElectionTimeout": {
+          "$ref": "#/definitions/ElectionTimeout"
+        },
+        "MaximumLeaderElectionTimeout": {
+          "$ref": "#/definitions/ElectionTimeout"
+        },
+        "MinimumHealthyNodes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "ClusterServerPort": {
+          "$ref": "#/definitions/ClusterPort"
+
+        },
+        "ClusterClientPort": {
+          "$ref": "#/definitions/ClusterPort"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElectionTimeout": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ClusterPort": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65353
+    },
+    "AssociatedMember": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    }
+  },
+  "properties": {
+    "ClusterName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "ClusterArn": {
+      "type": "string",
+      "pattern": "arn:[^:]*:greengrass:[^:]*:[0-9]+:clusters:[^:]+"
+    },
+    "ClusterConfiguration": {
+      "$ref": "#/definitions/ClusterConfiguration"
+    },
+    "AssociatedMembers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AssociatedMember"
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "uniqueItems": true
+    },
+    "Tags": {
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "type": "string",
+          "maxLength": 256
+        }
+      },
+      "maxProperties": 200,
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "ClusterName"
+  ],
+  "primaryIdentifier": [
+    "/properties/ClusterArn"
+  ],
+  "additionalProperties": false,
+  "readOnlyProperties": [
+    "/properties/ClusterArn"
+  ],
+  "createOnlyProperties": [
+    "/properties/ClusterName"
+  ],
+  "handlers": {
+    "create": {
+      "permissions": [
+        "greengrass:CreateCluster",
+        "greengrass:GetCluster"
+      ]
+    },
+    "read": {
+      "permissions": [
+        "greengrass:GetCluster"
+      ]
+    },
+    "update": {
+      "permissions": [
+        "greengrass:UpdateCluster",
+        "greengrass:TagResource",
+        "greengrass:UntagResource"
+      ]
+    },
+    "delete": {
+      "permissions": [
+        "greengrass:DisassociateCoreDevicesFromCluster",
+        "greengrass:DeleteCluster"
+      ]
+    },
+    "list": {
+      "permissions": [
+        "greengrass:ListClusters"
+      ]
+    }
+  },
+  "tagging": {
+    "taggable": true,
+    "tagOnCreate": true,
+    "tagUpdatable": true,
+    "cloudFormationSystemTags": false,
+    "tagProperty": "/properties/Tags"
+  }
+}
