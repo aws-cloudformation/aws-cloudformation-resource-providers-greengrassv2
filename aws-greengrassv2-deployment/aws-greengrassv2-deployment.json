@@ -388,6 +388,7 @@
     "tagOnCreate": true,
     "tagUpdatable": true,
     "cloudFormationSystemTags": false,
-    "tagProperty": "/properties/Tags"
+    "tagProperty": "/properties/Tags",
+    "permissions": ["TagResource", "UntagResource", "ListTagsForResource"]
   }
 }
