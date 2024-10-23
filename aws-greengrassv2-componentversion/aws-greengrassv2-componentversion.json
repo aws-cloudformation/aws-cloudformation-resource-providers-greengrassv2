@@ -326,5 +326,13 @@
         "greengrass:ListComponentVersions"
       ]
     }
+  },
+  "tagging": {
+    "taggable": true,
+    "tagOnCreate": true,
+    "tagUpdatable": true,
+    "cloudFormationSystemTags": false,
+    "tagProperty": "/properties/Tags",
+    "permissions": ["greengrass:TagResource", "greengrass:UntagResource", "greengrass:ListTagsForResource"]
   }
 }
