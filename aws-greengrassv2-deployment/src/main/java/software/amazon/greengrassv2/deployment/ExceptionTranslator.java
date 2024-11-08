@@ -38,9 +38,9 @@ public class ExceptionTranslator {
         if (exception instanceof ResourceNotFoundException) {
             return new CfnNotFoundException(operationName, exception.getMessage());
         } else if (exception instanceof ValidationException) {
-            return new CfnInvalidRequestException(operationName, exception);
+            return new CfnInvalidRequestException(exception);
         } else if (exception instanceof AccessDeniedException) {
-            return new CfnAccessDeniedException(operationName, exception);
+            return new CfnAccessDeniedException(exception);
         } else if (exception instanceof InternalServerException) {
             return new CfnServiceInternalErrorException(operationName, exception);
         } else if (exception instanceof ThrottlingException) {

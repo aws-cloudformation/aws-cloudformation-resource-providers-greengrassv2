@@ -335,6 +335,7 @@
       "permissions": [
         "greengrass:CreateDeployment",
         "greengrass:GetDeployment",
+        "greengrass:TagResource",
         "iot:CancelJob",
         "iot:CreateJob",
         "iot:DeleteThingShadow",
@@ -357,15 +358,19 @@
     },
     "update": {
       "permissions": [
+        "greengrass:GetDeployment",
         "greengrass:TagResource",
-        "greengrass:UntagResource"
+        "greengrass:UntagResource",
+        "iot:DescribeJob"
       ]
     },
     "delete": {
       "permissions": [
         "greengrass:DeleteDeployment",
         "greengrass:CancelDeployment",
-        "iot:DeleteJob"
+        "iot:CancelJob",
+        "iot:DeleteJob",
+        "iot:DescribeJob"
       ]
     },
     "list": {
@@ -384,6 +389,10 @@
     "tagUpdatable": true,
     "cloudFormationSystemTags": false,
     "tagProperty": "/properties/Tags",
-    "permissions": ["greengrass:TagResource", "greengrass:UntagResource", "greengrass:ListTagsForResource"]
+    "permissions": [
+      "greengrass:TagResource",
+      "greengrass:UntagResource",
+      "greengrass:ListTagsForResource"
+    ]
   }
 }
