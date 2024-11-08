@@ -8,8 +8,6 @@ package software.amazon.greengrassv2.deployment;
 import software.amazon.awssdk.services.greengrassv2.GreengrassV2Client;
 import software.amazon.cloudformation.LambdaWrapper;
 
-import java.net.URI;
-
 public class ClientBuilder {
   public static GreengrassV2Client getClient() {
     return GreengrassV2Client.builder()
